@@ -30,78 +30,209 @@ namespace ArduinoProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnDetener = new System.Windows.Forms.Button();
             this.lblBPM = new System.Windows.Forms.Label();
-            this.timer = new System.Windows.Forms.Timer(this.components);
             this.lblNofinger = new System.Windows.Forms.Label();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.RepositionTimeout = new System.Windows.Forms.Timer(this.components);
+            this.bpmTimer = new System.Windows.Forms.Timer(this.components);
+            this.liveChart = new LiveCharts.WinForms.CartesianChart();
+            this.lblWarning = new System.Windows.Forms.Label();
+            this.picFine = new System.Windows.Forms.PictureBox();
+            this.picWarning = new System.Windows.Forms.PictureBox();
+            this.picDedo = new System.Windows.Forms.PictureBox();
+            this.picLoad = new System.Windows.Forms.PictureBox();
+            this.picHeart = new System.Windows.Forms.PictureBox();
+            this.lblFine = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.picFine)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWarning)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDedo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHeart)).BeginInit();
             this.SuspendLayout();
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Location = new System.Drawing.Point(655, 37);
+            this.btnIniciar.BackColor = System.Drawing.Color.White;
+            this.btnIniciar.FlatAppearance.BorderSize = 0;
+            this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIniciar.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnIniciar.Location = new System.Drawing.Point(422, 13);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(75, 23);
+            this.btnIniciar.Size = new System.Drawing.Size(84, 32);
             this.btnIniciar.TabIndex = 0;
             this.btnIniciar.Text = "Iniciar";
-            this.btnIniciar.UseVisualStyleBackColor = true;
+            this.btnIniciar.UseVisualStyleBackColor = false;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // btnDetener
             // 
-            this.btnDetener.Location = new System.Drawing.Point(655, 66);
+            this.btnDetener.BackColor = System.Drawing.Color.White;
+            this.btnDetener.FlatAppearance.BorderSize = 0;
+            this.btnDetener.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDetener.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDetener.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnDetener.Location = new System.Drawing.Point(422, 51);
             this.btnDetener.Name = "btnDetener";
-            this.btnDetener.Size = new System.Drawing.Size(75, 23);
+            this.btnDetener.Size = new System.Drawing.Size(84, 32);
             this.btnDetener.TabIndex = 1;
             this.btnDetener.Text = "Detener";
-            this.btnDetener.UseVisualStyleBackColor = true;
+            this.btnDetener.UseVisualStyleBackColor = false;
             this.btnDetener.Click += new System.EventHandler(this.btnDetener_Click);
             // 
             // lblBPM
             // 
             this.lblBPM.AutoSize = true;
-            this.lblBPM.Location = new System.Drawing.Point(106, 37);
+            this.lblBPM.Font = new System.Drawing.Font("Roboto", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBPM.Location = new System.Drawing.Point(108, 37);
             this.lblBPM.Name = "lblBPM";
-            this.lblBPM.Size = new System.Drawing.Size(35, 13);
+            this.lblBPM.Size = new System.Drawing.Size(18, 25);
             this.lblBPM.TabIndex = 2;
-            this.lblBPM.Text = "label1";
-            // 
-            // timer
-            // 
-            this.timer.Tick += new System.EventHandler(this.timer_Tick);
+            this.lblBPM.Text = "-";
             // 
             // lblNofinger
             // 
             this.lblNofinger.AutoSize = true;
-            this.lblNofinger.Location = new System.Drawing.Point(106, 149);
+            this.lblNofinger.Font = new System.Drawing.Font("Roboto", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNofinger.Location = new System.Drawing.Point(109, 305);
             this.lblNofinger.Name = "lblNofinger";
-            this.lblNofinger.Size = new System.Drawing.Size(147, 13);
+            this.lblNofinger.Size = new System.Drawing.Size(288, 23);
             this.lblNofinger.TabIndex = 3;
-            this.lblNofinger.Text = "Coloque su dedo en el sensor";
+            this.lblNofinger.Text = "Coloque su dedo sobre el sensor";
             this.lblNofinger.Visible = false;
             // 
-            // richTextBox1
+            // RepositionTimeout
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(12, 316);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(485, 96);
-            this.richTextBox1.TabIndex = 4;
-            this.richTextBox1.Text = "";
+            this.RepositionTimeout.Interval = 6000;
+            // 
+            // bpmTimer
+            // 
+            this.bpmTimer.Interval = 10000;
+            // 
+            // liveChart
+            // 
+            this.liveChart.BackColor = System.Drawing.Color.AliceBlue;
+            this.liveChart.Location = new System.Drawing.Point(12, 346);
+            this.liveChart.Name = "liveChart";
+            this.liveChart.Size = new System.Drawing.Size(494, 148);
+            this.liveChart.TabIndex = 8;
+            this.liveChart.Text = "cartesianChart1";
+            // 
+            // lblWarning
+            // 
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.Location = new System.Drawing.Point(163, 148);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(178, 19);
+            this.lblWarning.TabIndex = 10;
+            this.lblWarning.Text = "Ritmo Cardiaco Elevado";
+            this.lblWarning.Visible = false;
+            // 
+            // picFine
+            // 
+            this.picFine.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picFine.Image = global::ArduinoProject.Properties.Resources.success;
+            this.picFine.Location = new System.Drawing.Point(213, 170);
+            this.picFine.Name = "picFine";
+            this.picFine.Size = new System.Drawing.Size(80, 66);
+            this.picFine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picFine.TabIndex = 11;
+            this.picFine.TabStop = false;
+            this.picFine.Visible = false;
+            // 
+            // picWarning
+            // 
+            this.picWarning.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picWarning.Image = global::ArduinoProject.Properties.Resources.warning;
+            this.picWarning.Location = new System.Drawing.Point(213, 170);
+            this.picWarning.Name = "picWarning";
+            this.picWarning.Size = new System.Drawing.Size(80, 66);
+            this.picWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picWarning.TabIndex = 9;
+            this.picWarning.TabStop = false;
+            this.picWarning.Visible = false;
+            // 
+            // picDedo
+            // 
+            this.picDedo.Image = global::ArduinoProject.Properties.Resources.mano;
+            this.picDedo.Location = new System.Drawing.Point(90, 110);
+            this.picDedo.Name = "picDedo";
+            this.picDedo.Size = new System.Drawing.Size(344, 180);
+            this.picDedo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picDedo.TabIndex = 7;
+            this.picDedo.TabStop = false;
+            this.picDedo.Visible = false;
+            // 
+            // picLoad
+            // 
+            this.picLoad.Image = global::ArduinoProject.Properties.Resources.load;
+            this.picLoad.Location = new System.Drawing.Point(176, 151);
+            this.picLoad.Name = "picLoad";
+            this.picLoad.Size = new System.Drawing.Size(149, 98);
+            this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picLoad.TabIndex = 6;
+            this.picLoad.TabStop = false;
+            this.picLoad.Visible = false;
+            // 
+            // picHeart
+            // 
+            this.picHeart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.picHeart.Image = global::ArduinoProject.Properties.Resources.heart;
+            this.picHeart.Location = new System.Drawing.Point(12, 13);
+            this.picHeart.Name = "picHeart";
+            this.picHeart.Size = new System.Drawing.Size(80, 66);
+            this.picHeart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.picHeart.TabIndex = 5;
+            this.picHeart.TabStop = false;
+            // 
+            // lblFine
+            // 
+            this.lblFine.AutoSize = true;
+            this.lblFine.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFine.Location = new System.Drawing.Point(170, 244);
+            this.lblFine.Name = "lblFine";
+            this.lblFine.Size = new System.Drawing.Size(174, 19);
+            this.lblFine.TabIndex = 12;
+            this.lblFine.Text = "Ritmo Cardiaco Normal";
+            this.lblFine.Visible = false;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.richTextBox1);
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.ClientSize = new System.Drawing.Size(518, 507);
+            this.Controls.Add(this.lblFine);
+            this.Controls.Add(this.picFine);
+            this.Controls.Add(this.lblWarning);
+            this.Controls.Add(this.picWarning);
+            this.Controls.Add(this.liveChart);
+            this.Controls.Add(this.picDedo);
+            this.Controls.Add(this.picLoad);
+            this.Controls.Add(this.picHeart);
             this.Controls.Add(this.lblNofinger);
             this.Controls.Add(this.lblBPM);
             this.Controls.Add(this.btnDetener);
             this.Controls.Add(this.btnIniciar);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Monitor de Ritmo Cardiaco";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.picFine)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picWarning)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picDedo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picLoad)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picHeart)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,9 +243,17 @@ namespace ArduinoProject
         private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.Button btnDetener;
         private System.Windows.Forms.Label lblBPM;
-        private System.Windows.Forms.Timer timer;
         private System.Windows.Forms.Label lblNofinger;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.PictureBox picHeart;
+        private System.Windows.Forms.PictureBox picLoad;
+        private System.Windows.Forms.PictureBox picDedo;
+        private System.Windows.Forms.Timer RepositionTimeout;
+        private System.Windows.Forms.Timer bpmTimer;
+        private LiveCharts.WinForms.CartesianChart liveChart;
+        private System.Windows.Forms.PictureBox picWarning;
+        private System.Windows.Forms.Label lblWarning;
+        private System.Windows.Forms.PictureBox picFine;
+        private System.Windows.Forms.Label lblFine;
     }
 }
 
