@@ -18,6 +18,7 @@ namespace ArduinoProject
         SerialPort Arduino;
         bool takingBPM = false;
         bool showLoad = true;
+        bool fine = false;
         int AverageBPM = 0;
         int AvgAux = 0;
         int AvgCount = 0;
@@ -43,6 +44,8 @@ namespace ArduinoProject
 
         private void btnDetener_Click(object sender, EventArgs e)
         {
+            picDedo.Visible = false;
+            lblNofinger.Visible = false;
             btnDetener.Enabled = false;
             btnIniciar.Enabled = true;
             CerrarPuerto();
@@ -90,6 +93,8 @@ namespace ArduinoProject
                     lblNofinger.Invoke(new Action(() => lblNofinger.Visible = true));
                     picFine.Invoke(new Action(() => picFine.Visible = false));
                     lblFine.Invoke(new Action(() => lblFine.Visible = false));
+                    picWarning.Invoke(new Action(() => picWarning.Visible = false));
+                    lblWarning.Invoke(new Action(() => lblWarning.Visible = false));
                 }
                 else if (Line.Contains("BEAT"))
                 {
