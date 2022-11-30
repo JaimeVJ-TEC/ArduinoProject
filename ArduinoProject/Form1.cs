@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using System.Windows.Forms.DataVisualization.Charting;
 using System.Timers;
 
 namespace ArduinoProject
@@ -82,6 +83,7 @@ namespace ArduinoProject
 
         void Read()
         {
+            int LastIRValue = 0;
             while (true)
             {
                 string Line = Arduino.ReadLine();
@@ -108,7 +110,32 @@ namespace ArduinoProject
                     else
                         picLoad.Invoke(new Action(() => picLoad.Visible = false));
 
-                    AvgAux += int.Parse(resultados[1]);
+                    int Aux;
+                    if (int.TryParse(resultados[1], out Aux))
+                    {
+                        AvgAux += int.Parse(resultados[1]);
+                        int IRValue = int.Parse(resultados[2]);
+                        if (IRValue < 3000)
+                            IRValue = LastIRValue;
+                        chrtIR.Invoke(new Action(() => chrtIR.Series["IR Value"].Points.Add(IRValue)));
+                        LastIRValue = IRValue;
+                    }
+                    else
+                    {
+                        string[] arr2 = resultados[1].Replace("  ", " ").Trim().Split();
+                        int IRValue = int.Parse(arr2[1]);
+                        AvgAux += int.Parse(arr2[0]);
+                        if (IRValue < 3000)
+                            IRValue = LastIRValue;
+                        chrtIR.Invoke(new Action(() => chrtIR.Series["IR Value"].Points.Add(IRValue)));
+                        LastIRValue = IRValue;
+                    }
+
+
+                    if (chrtIR.Series["IR Value"].Points.Count > 300)
+                    {
+                        chrtIR.Invoke(new Action(() => chrtIR.Series["IR Value"].Points.RemoveAt(0)));
+                    }
                     AvgCount++;
                     Console.WriteLine(AvgAux);
                     Console.WriteLine(AvgCount);
@@ -187,6 +214,15 @@ namespace ArduinoProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            chrtIR.Series.Add("IR Value");
+            chrtIR.Series["IR Value"].XValueType = ChartValueType.Auto;
+            chrtIR.Series["IR Value"].ChartType = SeriesChartType.Line;
+            chrtIR.Series["IR Value"].Color = Color.FromArgb(0, 128, 0);
+            chrtIR.Series["IR Value"].BorderWidth = 3;
+            chrtIR.ChartAreas[0].AxisY.IsStartedFromZero = false;
+            chrtIR.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
+            chrtIR.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
+            chrtIR.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
         }
     }
 }

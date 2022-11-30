@@ -30,6 +30,8 @@ namespace ArduinoProject
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.btnIniciar = new System.Windows.Forms.Button();
             this.btnDetener = new System.Windows.Forms.Button();
@@ -37,7 +39,6 @@ namespace ArduinoProject
             this.lblNofinger = new System.Windows.Forms.Label();
             this.RepositionTimeout = new System.Windows.Forms.Timer(this.components);
             this.bpmTimer = new System.Windows.Forms.Timer(this.components);
-            this.liveChart = new LiveCharts.WinForms.CartesianChart();
             this.lblWarning = new System.Windows.Forms.Label();
             this.picFine = new System.Windows.Forms.PictureBox();
             this.picWarning = new System.Windows.Forms.PictureBox();
@@ -45,11 +46,13 @@ namespace ArduinoProject
             this.picLoad = new System.Windows.Forms.PictureBox();
             this.picHeart = new System.Windows.Forms.PictureBox();
             this.lblFine = new System.Windows.Forms.Label();
+            this.chrtIR = new System.Windows.Forms.DataVisualization.Charting.Chart();
             ((System.ComponentModel.ISupportInitialize)(this.picFine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWarning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDedo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtIR)).BeginInit();
             this.SuspendLayout();
             // 
             // btnIniciar
@@ -110,15 +113,6 @@ namespace ArduinoProject
             // bpmTimer
             // 
             this.bpmTimer.Interval = 10000;
-            // 
-            // liveChart
-            // 
-            this.liveChart.BackColor = System.Drawing.Color.AliceBlue;
-            this.liveChart.Location = new System.Drawing.Point(12, 346);
-            this.liveChart.Name = "liveChart";
-            this.liveChart.Size = new System.Drawing.Size(494, 148);
-            this.liveChart.TabIndex = 8;
-            this.liveChart.Text = "cartesianChart1";
             // 
             // lblWarning
             // 
@@ -205,17 +199,29 @@ namespace ArduinoProject
             this.lblFine.Text = "Ritmo Cardiaco Normal";
             this.lblFine.Visible = false;
             // 
+            // chrtIR
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chrtIR.ChartAreas.Add(chartArea1);
+            this.chrtIR.Location = new System.Drawing.Point(12, 331);
+            this.chrtIR.Name = "chrtIR";
+            series1.ChartArea = "ChartArea1";
+            series1.Name = "Series1";
+            this.chrtIR.Series.Add(series1);
+            this.chrtIR.Size = new System.Drawing.Size(494, 164);
+            this.chrtIR.TabIndex = 13;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(518, 507);
+            this.Controls.Add(this.chrtIR);
             this.Controls.Add(this.lblFine);
             this.Controls.Add(this.picFine);
             this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.picWarning);
-            this.Controls.Add(this.liveChart);
             this.Controls.Add(this.picDedo);
             this.Controls.Add(this.picLoad);
             this.Controls.Add(this.picHeart);
@@ -233,6 +239,7 @@ namespace ArduinoProject
             ((System.ComponentModel.ISupportInitialize)(this.picDedo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtIR)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -249,11 +256,11 @@ namespace ArduinoProject
         private System.Windows.Forms.PictureBox picDedo;
         private System.Windows.Forms.Timer RepositionTimeout;
         private System.Windows.Forms.Timer bpmTimer;
-        private LiveCharts.WinForms.CartesianChart liveChart;
         private System.Windows.Forms.PictureBox picWarning;
         private System.Windows.Forms.Label lblWarning;
         private System.Windows.Forms.PictureBox picFine;
         private System.Windows.Forms.Label lblFine;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtIR;
     }
 }
 
