@@ -19,7 +19,8 @@ namespace ArduinoProject
         SerialPort Arduino;
         bool takingBPM = false;
         bool showLoad = true;
-        bool fine = false;
+        bool fine = true;
+        bool finishedOne = false;
         int AverageBPM = 0;
         int AvgAux = 0;
         int AvgCount = 0;
@@ -36,6 +37,7 @@ namespace ArduinoProject
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            grpInstrucciones.Visible = false;
             btnIniciar.Enabled = false;
             btnDetener.Enabled = true;
             Arduino.Open();
@@ -45,6 +47,20 @@ namespace ArduinoProject
 
         private void btnDetener_Click(object sender, EventArgs e)
         {
+            if(!finishedOne)
+            {
+                grpInstrucciones.Visible = true;
+            }
+            else if(fine)
+            {
+                picFine.Visible = true;
+                lblFine.Visible = true;
+            }
+            else
+            {
+                picWarning.Visible = true;
+                lblWarning.Visible = true;
+            }
             picDedo.Visible = false;
             lblNofinger.Visible = false;
             btnDetener.Enabled = false;
@@ -102,9 +118,9 @@ namespace ArduinoProject
                 {
                     PlayAnim();
                 }
-                else if(Line.Contains('|'))
+                else if(Line.Contains("  "))
                 {
-                    string[] resultados = Line.Split('|');
+                    string[] resultados = Line.Replace("  "," ").Split();
                     if(showLoad)
                         picLoad.Invoke(new Action(() => picLoad.Visible = true));
                     else
@@ -115,7 +131,7 @@ namespace ArduinoProject
                     {
                         AvgAux += int.Parse(resultados[1]);
                         int IRValue = int.Parse(resultados[2]);
-                        if (IRValue < 3000)
+                        if (IRValue < 10000)
                             IRValue = LastIRValue;
                         chrtIR.Invoke(new Action(() => chrtIR.Series["IR Value"].Points.Add(IRValue)));
                         LastIRValue = IRValue;
@@ -149,9 +165,11 @@ namespace ArduinoProject
                         lblWarning.Invoke(new Action(() => lblWarning.Visible = true));
                         picFine.Invoke(new Action(() => picFine.Visible = false));
                         lblFine.Invoke(new Action(() => lblFine.Visible = false));
+                        fine = false;
                     }
                     else if (!showLoad)
                     {
+                        fine = true;
                         picFine.Invoke(new Action(() => picFine.Visible = true));
                         lblFine.Invoke(new Action(() => lblFine.Visible = true));
                         picWarning.Invoke(new Action(() => picWarning.Visible = false));
@@ -186,6 +204,7 @@ namespace ArduinoProject
 
         void TimerAvgElapsed(object sender, ElapsedEventArgs e)
         {
+            finishedOne = true;
             var Timer = (System.Timers.Timer)sender;
             AverageBPM = AvgCount == 0 ? AvgAux / 1 : AvgAux / AvgCount;
             lblBPM.Invoke(new Action(() => lblBPM.Text = AverageBPM + " bpm"));

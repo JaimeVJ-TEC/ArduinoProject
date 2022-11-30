@@ -47,12 +47,18 @@ namespace ArduinoProject
             this.picHeart = new System.Windows.Forms.PictureBox();
             this.lblFine = new System.Windows.Forms.Label();
             this.chrtIR = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.grpInstrucciones = new System.Windows.Forms.GroupBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.picFine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picWarning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picDedo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtIR)).BeginInit();
+            this.grpInstrucciones.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnIniciar
@@ -88,10 +94,10 @@ namespace ArduinoProject
             // lblBPM
             // 
             this.lblBPM.AutoSize = true;
-            this.lblBPM.Font = new System.Drawing.Font("Roboto", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBPM.Font = new System.Drawing.Font("Roboto", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBPM.Location = new System.Drawing.Point(108, 37);
             this.lblBPM.Name = "lblBPM";
-            this.lblBPM.Size = new System.Drawing.Size(18, 25);
+            this.lblBPM.Size = new System.Drawing.Size(23, 35);
             this.lblBPM.TabIndex = 2;
             this.lblBPM.Text = "-";
             // 
@@ -117,10 +123,10 @@ namespace ArduinoProject
             // lblWarning
             // 
             this.lblWarning.AutoSize = true;
-            this.lblWarning.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarning.Location = new System.Drawing.Point(163, 148);
+            this.lblWarning.Font = new System.Drawing.Font("Roboto", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.Location = new System.Drawing.Point(142, 112);
             this.lblWarning.Name = "lblWarning";
-            this.lblWarning.Size = new System.Drawing.Size(178, 19);
+            this.lblWarning.Size = new System.Drawing.Size(233, 25);
             this.lblWarning.TabIndex = 10;
             this.lblWarning.Text = "Ritmo Cardiaco Elevado";
             this.lblWarning.Visible = false;
@@ -131,9 +137,9 @@ namespace ArduinoProject
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picFine.Image = global::ArduinoProject.Properties.Resources.success;
-            this.picFine.Location = new System.Drawing.Point(213, 170);
+            this.picFine.Location = new System.Drawing.Point(206, 147);
             this.picFine.Name = "picFine";
-            this.picFine.Size = new System.Drawing.Size(80, 66);
+            this.picFine.Size = new System.Drawing.Size(119, 94);
             this.picFine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picFine.TabIndex = 11;
             this.picFine.TabStop = false;
@@ -145,9 +151,9 @@ namespace ArduinoProject
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picWarning.Image = global::ArduinoProject.Properties.Resources.warning;
-            this.picWarning.Location = new System.Drawing.Point(213, 170);
+            this.picWarning.Location = new System.Drawing.Point(206, 147);
             this.picWarning.Name = "picWarning";
-            this.picWarning.Size = new System.Drawing.Size(80, 66);
+            this.picWarning.Size = new System.Drawing.Size(119, 94);
             this.picWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picWarning.TabIndex = 9;
             this.picWarning.TabStop = false;
@@ -181,7 +187,7 @@ namespace ArduinoProject
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picHeart.Image = global::ArduinoProject.Properties.Resources.heart;
-            this.picHeart.Location = new System.Drawing.Point(12, 13);
+            this.picHeart.Location = new System.Drawing.Point(12, 17);
             this.picHeart.Name = "picHeart";
             this.picHeart.Size = new System.Drawing.Size(80, 66);
             this.picHeart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -191,10 +197,10 @@ namespace ArduinoProject
             // lblFine
             // 
             this.lblFine.AutoSize = true;
-            this.lblFine.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFine.Location = new System.Drawing.Point(170, 244);
+            this.lblFine.Font = new System.Drawing.Font("Roboto", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFine.Location = new System.Drawing.Point(147, 252);
             this.lblFine.Name = "lblFine";
-            this.lblFine.Size = new System.Drawing.Size(174, 19);
+            this.lblFine.Size = new System.Drawing.Size(228, 25);
             this.lblFine.TabIndex = 12;
             this.lblFine.Text = "Ritmo Cardiaco Normal";
             this.lblFine.Visible = false;
@@ -211,12 +217,61 @@ namespace ArduinoProject
             this.chrtIR.Size = new System.Drawing.Size(494, 164);
             this.chrtIR.TabIndex = 13;
             // 
+            // grpInstrucciones
+            // 
+            this.grpInstrucciones.Controls.Add(this.label4);
+            this.grpInstrucciones.Controls.Add(this.label3);
+            this.grpInstrucciones.Controls.Add(this.label2);
+            this.grpInstrucciones.Controls.Add(this.label1);
+            this.grpInstrucciones.Location = new System.Drawing.Point(12, 110);
+            this.grpInstrucciones.Name = "grpInstrucciones";
+            this.grpInstrucciones.Size = new System.Drawing.Size(485, 180);
+            this.grpInstrucciones.TabIndex = 14;
+            this.grpInstrucciones.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Roboto", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(6, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(176, 29);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Instrucciones:";
+            // 
+            // label2
+            // 
+            this.label2.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(6, 57);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(397, 29);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "- Presione el boton de Iniciar para tomar mediciones.";
+            // 
+            // label3
+            // 
+            this.label3.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(6, 86);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(473, 29);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "- Coloque su dedo indice sobre el sensor sin aplicar mucha presion.";
+            // 
+            // label4
+            // 
+            this.label4.Font = new System.Drawing.Font("Roboto", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(6, 115);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(473, 29);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "- Cada diez segundos se actualizara el ritmo cardiaco calculado.";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightSteelBlue;
             this.ClientSize = new System.Drawing.Size(518, 507);
+            this.Controls.Add(this.grpInstrucciones);
             this.Controls.Add(this.chrtIR);
             this.Controls.Add(this.lblFine);
             this.Controls.Add(this.picFine);
@@ -240,6 +295,7 @@ namespace ArduinoProject
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chrtIR)).EndInit();
+            this.grpInstrucciones.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,6 +317,11 @@ namespace ArduinoProject
         private System.Windows.Forms.PictureBox picFine;
         private System.Windows.Forms.Label lblFine;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrtIR;
+        private System.Windows.Forms.GroupBox grpInstrucciones;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
