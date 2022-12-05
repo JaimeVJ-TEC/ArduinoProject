@@ -26,21 +26,23 @@ namespace ArduinoProject
         int AvgCount = 0;
         Thread thread;
 
+        System.Timers.Timer T = new System.Timers.Timer();
+
         public Form1()
         {
             InitializeComponent();
 
             Arduino = new SerialPort();
-            Arduino.PortName = "COM3";
+            Arduino.PortName = "COM4";
             Arduino.BaudRate = 115200;
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             grpInstrucciones.Visible = false;
-            btnIniciar.Enabled = false;
             btnDetener.Enabled = true;
-            Arduino.Open();
+            if(!Arduino.IsOpen)
+                Arduino.Open();
             thread = new Thread(Read);
             thread.Start();
         }
@@ -64,7 +66,6 @@ namespace ArduinoProject
             picDedo.Visible = false;
             lblNofinger.Visible = false;
             btnDetener.Enabled = false;
-            btnIniciar.Enabled = true;
             CerrarPuerto();
         }
 
@@ -100,6 +101,7 @@ namespace ArduinoProject
         void Read()
         {
             int LastIRValue = 0;
+            AverageBPM = 0;
             while (true)
             {
                 string Line = Arduino.ReadLine();
@@ -113,6 +115,7 @@ namespace ArduinoProject
                     lblFine.Invoke(new Action(() => lblFine.Visible = false));
                     picWarning.Invoke(new Action(() => picWarning.Visible = false));
                     lblWarning.Invoke(new Action(() => lblWarning.Visible = false));
+                    T.Start();
                 }
                 else if (Line.Contains("BEAT"))
                 {
@@ -194,9 +197,6 @@ namespace ArduinoProject
 
         void GetAvg()
         {
-            System.Timers.Timer T = new System.Timers.Timer();
-            T.Interval = 10000;
-            T.AutoReset = false;
             T.Elapsed += new ElapsedEventHandler(TimerAvgElapsed);
             takingBPM = true;
             T.Start();
@@ -211,10 +211,10 @@ namespace ArduinoProject
             showLoad = false;
             AvgAux = 0;
             AvgCount = 0;
-            takingBPM = false;
             try
             {
-                Timer.Dispose();
+                takingBPM = true;
+                CerrarPuerto();
             }
             catch(Exception)
             {
@@ -233,6 +233,8 @@ namespace ArduinoProject
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            T.Interval = 15000;
+            T.AutoReset = false;
             chrtIR.Series.Add("IR Value");
             chrtIR.Series["IR Value"].XValueType = ChartValueType.Auto;
             chrtIR.Series["IR Value"].ChartType = SeriesChartType.Line;
