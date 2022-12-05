@@ -11,6 +11,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Windows.Forms.DataVisualization.Charting;
 using System.Timers;
+using System.Media;
 
 namespace ArduinoProject
 {
@@ -33,14 +34,14 @@ namespace ArduinoProject
             InitializeComponent();
 
             Arduino = new SerialPort();
-            Arduino.PortName = "COM4";
+            Arduino.PortName = "COM3";
             Arduino.BaudRate = 115200;
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            btnIniciar.Enabled = false;
             grpInstrucciones.Visible = false;
-            btnDetener.Enabled = true;
             if(!Arduino.IsOpen)
                 Arduino.Open();
             thread = new Thread(Read);
@@ -65,7 +66,6 @@ namespace ArduinoProject
             }
             picDedo.Visible = false;
             lblNofinger.Visible = false;
-            btnDetener.Enabled = false;
             CerrarPuerto();
         }
 
@@ -115,7 +115,7 @@ namespace ArduinoProject
                     lblFine.Invoke(new Action(() => lblFine.Visible = false));
                     picWarning.Invoke(new Action(() => picWarning.Visible = false));
                     lblWarning.Invoke(new Action(() => lblWarning.Visible = false));
-                    T.Start();
+                    T.Interval = 15000;
                 }
                 else if (Line.Contains("BEAT"))
                 {
@@ -124,10 +124,7 @@ namespace ArduinoProject
                 else if(Line.Contains("  "))
                 {
                     string[] resultados = Line.Replace("  "," ").Split();
-                    if(showLoad)
-                        picLoad.Invoke(new Action(() => picLoad.Visible = true));
-                    else
-                        picLoad.Invoke(new Action(() => picLoad.Visible = false));
+                    picLoad.Invoke(new Action(() => picLoad.Visible = true));
 
                     int Aux;
                     if (int.TryParse(resultados[1], out Aux))
@@ -162,22 +159,6 @@ namespace ArduinoProject
                     if(!takingBPM)
                         GetAvg();
 
-                    if(AverageBPM > 100)
-                    {
-                        picWarning.Invoke(new Action(() => picWarning.Visible = true));
-                        lblWarning.Invoke(new Action(() => lblWarning.Visible = true));
-                        picFine.Invoke(new Action(() => picFine.Visible = false));
-                        lblFine.Invoke(new Action(() => lblFine.Visible = false));
-                        fine = false;
-                    }
-                    else if (!showLoad)
-                    {
-                        fine = true;
-                        picFine.Invoke(new Action(() => picFine.Visible = true));
-                        lblFine.Invoke(new Action(() => lblFine.Visible = true));
-                        picWarning.Invoke(new Action(() => picWarning.Visible = false));
-                        lblWarning.Invoke(new Action(() => lblWarning.Visible = false));
-                    }
                     //lblBPM.Invoke(new Action(() => lblBPM.Text = resultados[1]+" bpm"));
                     picDedo.Invoke(new Action(() => picDedo.Visible = false));
                     lblNofinger.Invoke(new Action(() => lblNofinger.Visible = false));
@@ -192,7 +173,8 @@ namespace ArduinoProject
             T.AutoReset = false;
             T.Elapsed += new ElapsedEventHandler(TimerElapsed);
             T.Start();
-            picHeart.Invoke(new Action(() => picHeart.Size = new Size(92,76)));
+            PlayHeartBeat();
+            picHeart.Invoke(new Action(() => picHeart.Size = new Size(140,130)));
         }
 
         void GetAvg()
@@ -207,14 +189,33 @@ namespace ArduinoProject
             finishedOne = true;
             var Timer = (System.Timers.Timer)sender;
             AverageBPM = AvgCount == 0 ? AvgAux / 1 : AvgAux / AvgCount;
-            lblBPM.Invoke(new Action(() => lblBPM.Text = AverageBPM + " bpm"));
-            showLoad = false;
+            lblBPM.Invoke(new Action(() => lblBPM.Text = AverageBPM.ToString()));
+
+            picLoad.Invoke(new Action(() => picLoad.Visible = false));
+            if (AverageBPM > 100)
+            {
+                picWarning.Invoke(new Action(() => picWarning.Visible = true));
+                lblWarning.Invoke(new Action(() => lblWarning.Visible = true));
+                picFine.Invoke(new Action(() => picFine.Visible = false));
+                lblFine.Invoke(new Action(() => lblFine.Visible = false));
+                fine = false;
+            }
+            else
+            {
+                fine = true;
+                picFine.Invoke(new Action(() => picFine.Visible = true));
+                lblFine.Invoke(new Action(() => lblFine.Visible = true));
+                picWarning.Invoke(new Action(() => picWarning.Visible = false));
+                lblWarning.Invoke(new Action(() => lblWarning.Visible = false));
+            }
+
             AvgAux = 0;
             AvgCount = 0;
             try
             {
                 takingBPM = true;
                 CerrarPuerto();
+                btnIniciar.Invoke(new Action(() => btnIniciar.Enabled = true));
             }
             catch(Exception)
             {
@@ -224,7 +225,7 @@ namespace ArduinoProject
 
         void TimerElapsed(object sender, ElapsedEventArgs e)
         {
-            picHeart.Invoke(new Action(() => picHeart.Size = new Size(80, 66)));
+            picHeart.Invoke(new Action(() => picHeart.Size = new Size(130, 120)));
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -244,6 +245,12 @@ namespace ArduinoProject
             chrtIR.ChartAreas[0].AxisX.LabelStyle.Enabled = false;
             chrtIR.ChartAreas[0].AxisY.MajorGrid.Enabled = false;
             chrtIR.ChartAreas[0].AxisX.MajorGrid.Enabled = false;
+        }
+
+        void PlayHeartBeat()
+        {
+            SoundPlayer sp = new SoundPlayer(ArduinoProject.Properties.Resources.sfx);
+            sp.Play();
         }
     }
 }

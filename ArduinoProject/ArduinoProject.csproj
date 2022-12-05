@@ -114,5 +114,20 @@
   <ItemGroup>
     <None Include="Resources\success.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heart1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\loading rojo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\manoB.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sfx.bmp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\sfx.wav" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
