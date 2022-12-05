@@ -19,8 +19,7 @@ namespace ArduinoProject
     {
         SerialPort Arduino;
         bool takingBPM = false;
-        bool showLoad = true;
-        bool fine = true;
+        bool finished = true;
         bool finishedOne = false;
         int AverageBPM = 0;
         int AvgAux = 0;
@@ -34,12 +33,13 @@ namespace ArduinoProject
             InitializeComponent();
 
             Arduino = new SerialPort();
-            Arduino.PortName = "COM3";
+            Arduino.PortName = "COM6";
             Arduino.BaudRate = 115200;
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            finished = false;
             btnIniciar.Enabled = false;
             grpInstrucciones.Visible = false;
             if(!Arduino.IsOpen)
@@ -50,38 +50,10 @@ namespace ArduinoProject
 
         private void btnDetener_Click(object sender, EventArgs e)
         {
-            if(!finishedOne)
-            {
-                grpInstrucciones.Visible = true;
-            }
-            else if(fine)
-            {
-                picFine.Visible = true;
-                lblFine.Visible = true;
-            }
-            else
-            {
-                picWarning.Visible = true;
-                lblWarning.Visible = true;
-            }
-            picDedo.Visible = false;
-            lblNofinger.Visible = false;
-            CerrarPuerto();
         }
 
         void CerrarPuerto()
         {
-            if (!(thread is null))
-            {
-                try
-                {
-                    thread.Abort();
-                }
-                catch(Exception)
-                {
-
-                }
-            }
             try
             {
                 if (Arduino.IsOpen)
@@ -101,8 +73,9 @@ namespace ArduinoProject
         void Read()
         {
             int LastIRValue = 0;
+            string LastResult = "";
             AverageBPM = 0;
-            while (true)
+            while (!finished)
             {
                 string Line = Arduino.ReadLine();
                 Console.WriteLine(Line);
@@ -119,7 +92,8 @@ namespace ArduinoProject
                 }
                 else if (Line.Contains("BEAT"))
                 {
-                    PlayAnim();
+                    if(LastResult != "No finger")
+                        PlayAnim();
                 }
                 else if(Line.Contains("  "))
                 {
@@ -163,6 +137,7 @@ namespace ArduinoProject
                     picDedo.Invoke(new Action(() => picDedo.Visible = false));
                     lblNofinger.Invoke(new Action(() => lblNofinger.Visible = false));
                 }
+                LastResult = Line;
             }
         }
 
@@ -187,22 +162,20 @@ namespace ArduinoProject
         void TimerAvgElapsed(object sender, ElapsedEventArgs e)
         {
             finishedOne = true;
+            finished = true;
             var Timer = (System.Timers.Timer)sender;
             AverageBPM = AvgCount == 0 ? AvgAux / 1 : AvgAux / AvgCount;
             lblBPM.Invoke(new Action(() => lblBPM.Text = AverageBPM.ToString()));
 
-            picLoad.Invoke(new Action(() => picLoad.Visible = false));
-            if (AverageBPM > 100)
+            if (AverageBPM >= 100)
             {
                 picWarning.Invoke(new Action(() => picWarning.Visible = true));
                 lblWarning.Invoke(new Action(() => lblWarning.Visible = true));
                 picFine.Invoke(new Action(() => picFine.Visible = false));
                 lblFine.Invoke(new Action(() => lblFine.Visible = false));
-                fine = false;
             }
             else
             {
-                fine = true;
                 picFine.Invoke(new Action(() => picFine.Visible = true));
                 lblFine.Invoke(new Action(() => lblFine.Visible = true));
                 picWarning.Invoke(new Action(() => picWarning.Visible = false));
@@ -215,6 +188,7 @@ namespace ArduinoProject
             {
                 takingBPM = true;
                 CerrarPuerto();
+                picLoad.Invoke(new Action(() => picLoad.Visible = false));
                 btnIniciar.Invoke(new Action(() => btnIniciar.Enabled = true));
             }
             catch(Exception)
@@ -249,7 +223,7 @@ namespace ArduinoProject
 
         void PlayHeartBeat()
         {
-            SoundPlayer sp = new SoundPlayer(ArduinoProject.Properties.Resources.sfx);
+            SoundPlayer sp = new SoundPlayer(ArduinoProject.Properties.Resources.heartbeat);
             sp.Play();
         }
     }

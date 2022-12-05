@@ -127,7 +127,12 @@
     <None Include="Resources\sfx.bmp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\sfx.wav" />
+    <None Include="Resources\sfx.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\heartbeat.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

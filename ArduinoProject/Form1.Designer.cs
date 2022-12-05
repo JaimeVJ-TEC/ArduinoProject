@@ -39,6 +39,7 @@ namespace ArduinoProject
             this.lblFine = new System.Windows.Forms.Label();
             this.chrtIR = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.grpInstrucciones = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,7 +49,6 @@ namespace ArduinoProject
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label9 = new System.Windows.Forms.Label();
             this.picFine = new System.Windows.Forms.PictureBox();
             this.picWarning = new System.Windows.Forms.PictureBox();
             this.picDedo = new System.Windows.Forms.PictureBox();
@@ -104,7 +104,7 @@ namespace ArduinoProject
             // 
             this.lblWarning.AutoSize = true;
             this.lblWarning.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWarning.Location = new System.Drawing.Point(354, 132);
+            this.lblWarning.Location = new System.Drawing.Point(353, 408);
             this.lblWarning.Name = "lblWarning";
             this.lblWarning.Size = new System.Drawing.Size(306, 31);
             this.lblWarning.TabIndex = 10;
@@ -147,6 +147,15 @@ namespace ArduinoProject
             this.grpInstrucciones.Size = new System.Drawing.Size(929, 259);
             this.grpInstrucciones.TabIndex = 14;
             this.grpInstrucciones.TabStop = false;
+            // 
+            // label9
+            // 
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(7, 183);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(845, 29);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "- Un ritmo cardiaco de mas de 100 bpm es considerado acelerado.";
             // 
             // label5
             // 
@@ -215,7 +224,7 @@ namespace ArduinoProject
             // label8
             // 
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(123, 0);
+            this.label8.Location = new System.Drawing.Point(162, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(72, 37);
             this.label8.TabIndex = 21;
@@ -224,8 +233,8 @@ namespace ArduinoProject
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.25F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.75F));
             this.tableLayoutPanel1.Controls.Add(this.lblBPM, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label8, 1, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(148, 79);
@@ -233,17 +242,8 @@ namespace ArduinoProject
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(240, 76);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(240, 69);
             this.tableLayoutPanel1.TabIndex = 22;
-            // 
-            // label9
-            // 
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(7, 183);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(845, 29);
-            this.label9.TabIndex = 20;
-            this.label9.Text = "- Un ritmo cardiaco de mas de 100 bpm es considerado acelerado.";
             // 
             // picFine
             // 
@@ -320,8 +320,8 @@ namespace ArduinoProject
             this.Controls.Add(this.grpInstrucciones);
             this.Controls.Add(this.chrtIR);
             this.Controls.Add(this.lblFine);
-            this.Controls.Add(this.picFine);
             this.Controls.Add(this.lblWarning);
+            this.Controls.Add(this.picFine);
             this.Controls.Add(this.picWarning);
             this.Controls.Add(this.picDedo);
             this.Controls.Add(this.picLoad);
