@@ -54,6 +54,9 @@ namespace ArduinoProject
             this.picDedo = new System.Windows.Forms.PictureBox();
             this.picLoad = new System.Windows.Forms.PictureBox();
             this.picHeart = new System.Windows.Forms.PictureBox();
+            this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
+            this.lblHora = new System.Windows.Forms.Label();
+            this.lblTime = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chrtIR)).BeginInit();
             this.grpInstrucciones.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -62,6 +65,7 @@ namespace ArduinoProject
             ((System.ComponentModel.ISupportInitialize)(this.picDedo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart)).BeginInit();
+            this.tableLayoutPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnIniciar
@@ -81,11 +85,14 @@ namespace ArduinoProject
             // 
             // lblBPM
             // 
+            this.lblBPM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBPM.AutoSize = true;
             this.lblBPM.Font = new System.Drawing.Font("DSEG7 Classic", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblBPM.Location = new System.Drawing.Point(3, 0);
             this.lblBPM.Name = "lblBPM";
-            this.lblBPM.Size = new System.Drawing.Size(59, 48);
+            this.lblBPM.Size = new System.Drawing.Size(154, 69);
             this.lblBPM.TabIndex = 2;
             this.lblBPM.Text = "-";
             // 
@@ -93,7 +100,7 @@ namespace ArduinoProject
             // 
             this.lblNofinger.AutoSize = true;
             this.lblNofinger.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNofinger.Location = new System.Drawing.Point(329, 405);
+            this.lblNofinger.Location = new System.Drawing.Point(329, 412);
             this.lblNofinger.Name = "lblNofinger";
             this.lblNofinger.Size = new System.Drawing.Size(371, 29);
             this.lblNofinger.TabIndex = 3;
@@ -115,7 +122,7 @@ namespace ArduinoProject
             // 
             this.lblFine.AutoSize = true;
             this.lblFine.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFine.Location = new System.Drawing.Point(353, 347);
+            this.lblFine.Location = new System.Drawing.Point(353, 408);
             this.lblFine.Name = "lblFine";
             this.lblFine.Size = new System.Drawing.Size(320, 33);
             this.lblFine.TabIndex = 12;
@@ -142,7 +149,7 @@ namespace ArduinoProject
             this.grpInstrucciones.Controls.Add(this.label3);
             this.grpInstrucciones.Controls.Add(this.label2);
             this.grpInstrucciones.Controls.Add(this.label1);
-            this.grpInstrucciones.Location = new System.Drawing.Point(12, 166);
+            this.grpInstrucciones.Location = new System.Drawing.Point(12, 164);
             this.grpInstrucciones.Name = "grpInstrucciones";
             this.grpInstrucciones.Size = new System.Drawing.Size(929, 259);
             this.grpInstrucciones.TabIndex = 14;
@@ -173,7 +180,7 @@ namespace ArduinoProject
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(851, 29);
             this.label4.TabIndex = 18;
-            this.label4.Text = "- Al terminar los 15 segundos, se mostrara el resultado en bpm.";
+            this.label4.Text = "- Al terminar los 10 segundos, se mostrara el resultado en bpm.";
             // 
             // label3
             // 
@@ -182,7 +189,7 @@ namespace ArduinoProject
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(759, 29);
             this.label3.TabIndex = 17;
-            this.label3.Text = "- Se tardara 15 segundas en tomar una medicion";
+            this.label3.Text = "- Se tardara 10 segundas en tomar una medicion";
             // 
             // label2
             // 
@@ -223,27 +230,33 @@ namespace ArduinoProject
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(162, 0);
+            this.label8.Location = new System.Drawing.Point(163, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 37);
+            this.label8.Size = new System.Drawing.Size(152, 69);
             this.label8.TabIndex = 21;
             this.label8.Text = "bpm";
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 66.25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.75F));
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.31446F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 49.68554F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 233F));
             this.tableLayoutPanel1.Controls.Add(this.lblBPM, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.label8, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.tableLayoutPanel2, 2, 0);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(148, 79);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(240, 69);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(552, 69);
             this.tableLayoutPanel1.TabIndex = 22;
+            this.tableLayoutPanel1.Paint += new System.Windows.Forms.PaintEventHandler(this.tableLayoutPanel1_Paint);
             // 
             // picFine
             // 
@@ -251,7 +264,7 @@ namespace ArduinoProject
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picFine.Image = global::ArduinoProject.Properties.Resources.success;
-            this.picFine.Location = new System.Drawing.Point(327, 166);
+            this.picFine.Location = new System.Drawing.Point(334, 210);
             this.picFine.Name = "picFine";
             this.picFine.Size = new System.Drawing.Size(373, 179);
             this.picFine.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -265,7 +278,7 @@ namespace ArduinoProject
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.picWarning.Image = global::ArduinoProject.Properties.Resources.warning;
-            this.picWarning.Location = new System.Drawing.Point(323, 166);
+            this.picWarning.Location = new System.Drawing.Point(334, 211);
             this.picWarning.Name = "picWarning";
             this.picWarning.Size = new System.Drawing.Size(373, 178);
             this.picWarning.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -276,7 +289,7 @@ namespace ArduinoProject
             // picDedo
             // 
             this.picDedo.Image = global::ArduinoProject.Properties.Resources.manoB;
-            this.picDedo.Location = new System.Drawing.Point(275, 128);
+            this.picDedo.Location = new System.Drawing.Point(282, 164);
             this.picDedo.Name = "picDedo";
             this.picDedo.Size = new System.Drawing.Size(479, 245);
             this.picDedo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -287,9 +300,9 @@ namespace ArduinoProject
             // picLoad
             // 
             this.picLoad.Image = global::ArduinoProject.Properties.Resources.loading_rojo;
-            this.picLoad.Location = new System.Drawing.Point(398, 194);
+            this.picLoad.Location = new System.Drawing.Point(371, 180);
             this.picLoad.Name = "picLoad";
-            this.picLoad.Size = new System.Drawing.Size(220, 145);
+            this.picLoad.Size = new System.Drawing.Size(302, 200);
             this.picLoad.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.picLoad.TabIndex = 6;
             this.picLoad.TabStop = false;
@@ -308,6 +321,46 @@ namespace ArduinoProject
             this.picHeart.TabIndex = 5;
             this.picHeart.TabStop = false;
             // 
+            // tableLayoutPanel2
+            // 
+            this.tableLayoutPanel2.ColumnCount = 1;
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Controls.Add(this.lblTime, 0, 1);
+            this.tableLayoutPanel2.Controls.Add(this.lblHora, 0, 0);
+            this.tableLayoutPanel2.Location = new System.Drawing.Point(321, 3);
+            this.tableLayoutPanel2.Name = "tableLayoutPanel2";
+            this.tableLayoutPanel2.RowCount = 2;
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel2.Size = new System.Drawing.Size(228, 63);
+            this.tableLayoutPanel2.TabIndex = 22;
+            // 
+            // lblHora
+            // 
+            this.lblHora.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.Location = new System.Drawing.Point(3, 0);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(222, 31);
+            this.lblHora.TabIndex = 22;
+            this.lblHora.Text = "Hora de la medicion:";
+            this.lblHora.Visible = false;
+            // 
+            // lblTime
+            // 
+            this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTime.AutoSize = true;
+            this.lblTime.Font = new System.Drawing.Font("DSEG7 Classic", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTime.Location = new System.Drawing.Point(3, 31);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(222, 32);
+            this.lblTime.TabIndex = 23;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,10 +373,10 @@ namespace ArduinoProject
             this.Controls.Add(this.grpInstrucciones);
             this.Controls.Add(this.chrtIR);
             this.Controls.Add(this.lblFine);
+            this.Controls.Add(this.picDedo);
             this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.picFine);
             this.Controls.Add(this.picWarning);
-            this.Controls.Add(this.picDedo);
             this.Controls.Add(this.picLoad);
             this.Controls.Add(this.picHeart);
             this.Controls.Add(this.lblNofinger);
@@ -342,6 +395,8 @@ namespace ArduinoProject
             ((System.ComponentModel.ISupportInitialize)(this.picDedo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picLoad)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHeart)).EndInit();
+            this.tableLayoutPanel2.ResumeLayout(false);
+            this.tableLayoutPanel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -371,6 +426,9 @@ namespace ArduinoProject
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Label lblTime;
+        private System.Windows.Forms.Label lblHora;
     }
 }
 

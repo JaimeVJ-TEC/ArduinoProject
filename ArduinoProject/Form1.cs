@@ -33,13 +33,16 @@ namespace ArduinoProject
             InitializeComponent();
 
             Arduino = new SerialPort();
-            Arduino.PortName = "COM6";
+            Arduino.PortName = "COM7";
             Arduino.BaudRate = 115200;
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             finished = false;
+            lblHora.Visible = false;
+            lblBPM.Text = "-";
+            lblTime.Text = "";
             btnIniciar.Enabled = false;
             grpInstrucciones.Visible = false;
             if(!Arduino.IsOpen)
@@ -67,6 +70,7 @@ namespace ArduinoProject
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
+            finished = true;
             CerrarPuerto();
         }
 
@@ -166,6 +170,8 @@ namespace ArduinoProject
             var Timer = (System.Timers.Timer)sender;
             AverageBPM = AvgCount == 0 ? AvgAux / 1 : AvgAux / AvgCount;
             lblBPM.Invoke(new Action(() => lblBPM.Text = AverageBPM.ToString()));
+            lblHora.Invoke(new Action(() => lblHora.Visible = true));
+            lblTime.Invoke(new Action(() => lblTime.Text = DateTime.Now.ToString("HH:mm")));
 
             if (AverageBPM >= 100)
             {
@@ -187,7 +193,6 @@ namespace ArduinoProject
             try
             {
                 takingBPM = true;
-                CerrarPuerto();
                 picLoad.Invoke(new Action(() => picLoad.Visible = false));
                 btnIniciar.Invoke(new Action(() => btnIniciar.Enabled = true));
             }
@@ -225,6 +230,11 @@ namespace ArduinoProject
         {
             SoundPlayer sp = new SoundPlayer(ArduinoProject.Properties.Resources.heartbeat);
             sp.Play();
+        }
+
+        private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }
